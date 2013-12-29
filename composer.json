@@ -15,7 +15,6 @@
     "minimum-stability": "dev",
     "require": {
       "symfony/http-foundation": "2.4.*",
-      "symfony/routing": "2.5.*@dev",
       "twig/twig": "1.15.*",
       "phpwax/slimmodel": "1.0.*@dev"
     },
