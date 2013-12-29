@@ -17,6 +17,10 @@ class Application implements HttpKernelInterface  {
 
   public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true) {
     $this->configure();
+    foreach($this->controllers as $controller) {
+      $response = $controller->render($request);
+      if($response instanceof Response) return $response;
+    }
     return $this->app->handle($request, $type, $catch);
   }
 
