@@ -17,6 +17,7 @@ class Application implements HttpKernelInterface  {
 
   public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true) {
     $this->configure();
+    $this->boot();
     foreach($this->controllers as $controller) {
       $response = $controller->render($request);
       if($response instanceof Response) return $response;
@@ -50,11 +51,18 @@ class Application implements HttpKernelInterface  {
 
   }
 
-
   public function setController($name, $callable, $overwrite = true) {
     if(!isset($this->controllers[$name])) $this->controllers[$name] = $callable;
     elseif($overwrite) $this->controllers[$name] = $callable;
   }
+
+  /**
+   * Boot method allows inheriting applications to provide any setup necessary prior to a request being handled.
+   *
+   * @return void
+   **/
+  public function boot() {}
+
 
 
 
