@@ -1,5 +1,5 @@
 <?php
-namespace Wildfire\Frontent\Controller;
+namespace Wildfire\Frontend\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Wildfire\Frontend\Model\Content;
