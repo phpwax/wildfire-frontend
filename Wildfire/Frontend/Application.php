@@ -30,7 +30,7 @@ class Application implements HttpKernelInterface  {
 
   protected function configure() {
     // Setup database connection if not already set
-    if(!$this->db) {
+    if(!isset($this->db)) {
       $this->db = DriverManager::getConnection([
           'dbname' =>   $this->config["db.dbname"],
           'user' =>     $this->config["db.user"],
