@@ -48,11 +48,11 @@ class Application implements HttpKernelInterface  {
     }
 
     // Setup controllers
-    $this->setController(new CmsPageController($this->db, $this->renderer));
+    $this->registerController(new CmsPageController($this->db, $this->renderer));
 
   }
 
-  public function setController($callable) {
+  public function registerController($callable) {
     $this->controllers->push($callable);
   }
 
