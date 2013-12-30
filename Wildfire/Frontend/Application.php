@@ -10,10 +10,10 @@ use Wildfire\Frontend\Helpers\CmsHelper;
 
 class Application implements HttpKernelInterface  {
 
-  public $app;
+  public $config;
 
-  public function __construct(HttpKernelInterface $app, $options = []) {
-    $this->app = $app;
+  public function __construct($config = []) {
+    $this->config = $config;
     $this->controllers = new \SplStack();
   }
 
