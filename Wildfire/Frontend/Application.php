@@ -3,15 +3,16 @@ namespace Wildfire\Frontend;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\Configuration;
+use Wildfire\Frontend\Controller\CmsPageController;
 use Wildfire\Frontend\Helpers\CmsHelper;
 
 class Application implements HttpKernelInterface  {
 
   public $app;
-  public $controllers = [];
 
   public function __construct(HttpKernelInterface $app, $options = []) {
     $this->app = $app;
+    $this->controllers = new \SplStack();
   }
 
 
@@ -47,13 +48,12 @@ class Application implements HttpKernelInterface  {
     }
 
     // Setup controllers
-    $this->setController("cms",new Controller\CmsPageController($this->db, $this->renderer), false);
+    $this->setController(new CmsPageController($this->db, $this->renderer));
 
   }
 
-  public function setController($name, $callable, $overwrite = true) {
-    if(!isset($this->controllers[$name])) $this->controllers[$name] = $callable;
-    elseif($overwrite) $this->controllers[$name] = $callable;
+  public function setController($callable) {
+    $this->controllers->push($callable);
   }
 
   /**
