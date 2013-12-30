@@ -25,7 +25,6 @@ class Application implements HttpKernelInterface  {
       $response = $controller->render($request);
       if($response instanceof Response) return $response;
     }
-    return $this->app->handle($request, $type, $catch);
   }
 
   protected function configure() {

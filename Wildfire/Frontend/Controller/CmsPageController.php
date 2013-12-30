@@ -16,7 +16,7 @@ class CmsPageController {
   }
 
   public function model() {
-    if(!$this->model["content"]) return new Content($this->db);
+    if(!isset($this->model["content"])) return new Content($this->db);
     else return $this->model["content"];
   }
 
