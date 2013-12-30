@@ -16,7 +16,7 @@ class Application implements HttpKernelInterface  {
   }
 
 
-  public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true) {
+  public function handle(Request $request, $type = HttpKernelInterface::MASTER_REQUEST, $catch = true) {
     $this->configure();
     $this->boot();
     foreach($this->controllers as $controller) {
@@ -42,7 +42,7 @@ class Application implements HttpKernelInterface  {
 
     // Setup twig as default renderering system
     if(!$this->renderer) {
-      $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/views');
+      $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/Templates');
       $this->renderer = new \Twig_Environment($loader);
       $this->renderer->addExtension(new CmsHelper);
     }
