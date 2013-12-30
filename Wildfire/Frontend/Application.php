@@ -1,6 +1,8 @@
 <?php
 namespace Wildfire\Frontend;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\Configuration;
 use Wildfire\Frontend\Controller\CmsPageController;
