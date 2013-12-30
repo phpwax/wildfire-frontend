@@ -43,7 +43,7 @@ class Application implements HttpKernelInterface  {
 
 
     // Setup twig as default renderering system
-    if(!$this->renderer) {
+    if(!isset($this->renderer)) {
       $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/Templates');
       $this->renderer = new \Twig_Environment($loader);
       $this->renderer->addExtension(new CmsHelper);
