@@ -11,9 +11,12 @@ use Wildfire\Frontend\Helpers\CmsHelper;
 class Application implements HttpKernelInterface  {
 
   public $config;
+  public $app;
 
-  public function __construct($config = []) {
-    $this->config = $config;
+  public function __construct($app = null, $config = null) {
+    if($app instanceof HttpKernelInterface) $this->app = $args[0];
+    else $this->config = $app;
+    if($config) $this->config = $config;
     $this->controllers = new \SplStack();
   }
 
@@ -25,6 +28,7 @@ class Application implements HttpKernelInterface  {
       $response = $controller->render($request);
       if($response instanceof Response) return $response;
     }
+    if($this->app) return $this->app->handle($request, $type, $catch);
   }
 
   protected function configure() {
