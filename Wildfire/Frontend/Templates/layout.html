@@ -11,24 +11,30 @@
 </head>
 <body>
 
-  <div class="row">
-    <div class="small-3 columns">
-      <nav>
-        <ul class="side-nav">
-          <li class="heading">Site Pages</li>
-          <li><a href="/" data-search="">Home</a></li>
-        </ul>
-      </nav>
-    </div>
-    <div class="small-9 columns">
-      <h2>Welcome to Wildfire Demo</h2>
-      <p>This site is running off Wildfire v7.1</p>
-      <hr />
-      <div class="panel">
-        {% block content %}{% endblock %}
-      </div>
-    </div>
+<nav class="top-bar docs-bar hide-for-small" data-topbar="">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="/">Wildfire Demo</a></h1>
+    </li>
+  </ul>
+</nav>
+
+<div class="row">
+  <div class="large-3 columns">
+    <nav>
+      <ul class="side-nav">
+        <li class="heading">Site Pages</li>
+        <li><a href="/" data-search="">Home</a></li>
+        <li><a href="/example" data-search="">Example CMS Page</a></li>
+        <li><a href="/404" data-search="">404 Error Page</a></li>
+        <li><a href="/error" data-search="">Application Error Page</a></li>
+      </ul>
+    </nav>
   </div>
+  <div class="large-9 columns">
+    {% block content %}{% endblock %}
+  </div>
+</div>
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.0.2/js/foundation.min.js"></script>
