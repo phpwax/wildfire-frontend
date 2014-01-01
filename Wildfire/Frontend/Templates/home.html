@@ -16,9 +16,11 @@
     <p>
       First add your local template directory to the application renderer. In Application.php boot method add:
     </p>
-      <code>
+    <pre>
+      <code class="language-php">
         $this->renderer->getLoader()->addPath(__DIR__."/Templates");
       </code>
+    </pre>
     <p>
       Then create the Templates directory and add your templates inside.
     </p>
