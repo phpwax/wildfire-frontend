@@ -23,6 +23,13 @@ class CmsPageController {
 
   public function render($request) {
     if($response = $this->cms($request)) return $response;
+    switch($request->getPathInfo()) {
+      case "/":        return new Response($this->renderer->render('home.html'));     break;
+      case "/example": return new Response($this->renderer->render('example.html'));  break;
+      case "/404":     return new Response($this->renderer->render('404.html'));      break;
+      case "/error":   return new Response($this->renderer->render('error.html'));    break;
+      default : return $this->cms($request);
+    }
   }
 
 
@@ -32,5 +39,6 @@ class CmsPageController {
     if(!$content_row) return false;
     return new Response($this->renderer->render('cms.html',$content_row));
   }
+
 
 }
