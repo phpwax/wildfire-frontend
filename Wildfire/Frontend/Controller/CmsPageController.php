@@ -35,7 +35,7 @@ class CmsPageController {
 
   public function cms($request) {
     $slug = $request->getPathInfo();
-    $content_row = $this->model()->fetch($slug, $request->get("preview"));
+    $content_row = $this->model()->getContent($slug, $request->get("preview"));
     if(!$content_row) return false;
     return new Response($this->renderer->render('cms.html',$content_row));
   }
