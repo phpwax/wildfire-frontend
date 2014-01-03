@@ -51,14 +51,19 @@ class AssetApplication implements HttpKernelInterface  {
   }
 
   public function defaults() {
-    $this->addMatcher("/stylesheets/wildfire/", "/vendor/phpwax/wildfire.interface/resources/public/stylesheets/wildfire/", "text/css");
-    $this->addMatcher("/stylesheets/wildfire.media/", "/vendor/phpwax/wildfire.media/assets/stylesheets/wildfire.media/", "text/css");
+    $this->addMatcher("/stylesheets/wildfire/",             "/vendor/phpwax/wildfire.interface/resources/public/stylesheets/wildfire/",     "text/css");
+    $this->addMatcher("/stylesheets/wildfire.media/",       "/vendor/phpwax/wildfire.media/assets/stylesheets/wildfire.media/",             "text/css");
+    $this->addMatcher("/stylesheets/wildfire.formbuilder/", "/vendor/phpwax/wildfire.formbuilder/assets/stylesheets/wildfire.formbuilder/", "text/css");
 
-    $this->addMatcher("/javascripts/wildfire/", "/vendor/phpwax/wildfire.interface/resources/public/javascripts/wildfire-content/");
-    $this->addMatcher("/javascripts/wildfire-content/", "/vendor/phpwax/wildfire.content/resources/public/javascripts/wildfire/");
-    $this->addMatcher("/javascripts/wildfire.media/", "/vendor/phpwax/wildfire.media/assets/javascripts/wildfire.media/");
-    $this->addMatcher("/javascripts/wildfire-plugins/", "/vendor/phpwax/wildfire.interface/resources/public/javascripts/wildfire-plugins/");
-    $this->addMatcher("/images/wildfire/", "/vendor/phpwax/wildfire.interface/resources/public/images/wildfire/");
+    $this->addMatcher("/javascripts/wildfire/",             "/vendor/phpwax/wildfire.interface/resources/public/javascripts/wildfire/",         "text/javascript");
+    $this->addMatcher("/javascripts/wildfire-content/",     "/vendor/phpwax/wildfire.content/resources/public/javascripts/wildfire-content/",   "text/javascript");
+    $this->addMatcher("/javascripts/wildfire.media/",       "/vendor/phpwax/wildfire.media/assets/javascripts/wildfire.media/",                 "text/javascript");
+    $this->addMatcher("/javascripts/wildfire-plugins/",     "/vendor/phpwax/wildfire.interface/resources/public/javascripts/wildfire-plugins/", "text/javascript");
+    $this->addMatcher("/tinymce/",                          "/vendor/phpwax/wildfire.interface/resources/public/tinymce/",                      "text/javascript");
+    $this->addMatcher("/javascripts/wildfire.formbuilder/", "/vendor/phpwax/wildfire.formbuilder/assets/javascripts/wildfire.formbuilder/",     "text/javascript");
+
+    $this->addMatcher("/images/wildfire/",              "/vendor/phpwax/wildfire.interface/resources/public/images/wildfire/");
+    $this->addMatcher("/fonts/wildfire/",               "/vendor/phpwax/wildfire.interface/resources/public/fonts/wildfire/");
   }
 
 
