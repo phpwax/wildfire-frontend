@@ -42,4 +42,33 @@ class Content extends Base {
 
 
 
+  /**
+   * undocumented function
+   *
+   * @return (string)$page_type
+   **/
+
+
+  public function getPageType($row, $depth=4) {
+
+    // If it's set already on the specific row, don't go further up the tree
+    if(strlen($row->page_type)>0) return $row->page_type;
+
+    $query = $this->db->createQueryBuilder();
+    for($i=1; $i<=$depth; $i++) {
+      $query->select("t".$i.".page_type as lev".$i);
+    }
+    $query->from("wildfire_content", "t1");
+
+    for($i=2; $i<=$depth; $i++) {
+      $query->leftjoin("t".$i, "wildfire_content", "t".$i.".id", "t".($i-1).".parent_id");
+    }
+    $query->where("t1.id = :c")->setParameter("c",$row->id);
+    $tree = $query->execute()->fetch();
+    foreach($tree as $node) if(strlen($node)>1) return $node;
+    return false;
+  }
+
+
+
 }
