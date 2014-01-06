@@ -56,12 +56,12 @@ class Content extends Base {
 
     $query = $this->db->createQueryBuilder();
     for($i=1; $i<=$depth; $i++) {
-      $query->select("t".$i.".page_type as lev".$i);
+      $query->addSelect("t".$i.".page_type as lev".$i);
     }
     $query->from("wildfire_content", "t1");
 
     for($i=2; $i<=$depth; $i++) {
-      $query->leftjoin("t".$i, "wildfire_content", "t".$i.".id", "t".($i-1).".parent_id");
+      $query->leftjoin("t1", "wildfire_content", "t".$i.".id", "t".($i-1).".parent_id");
     }
     $query->where("t1.id = :c")->setParameter("c",$row->id);
     $tree = $query->execute()->fetch();
