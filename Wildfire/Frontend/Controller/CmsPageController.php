@@ -42,7 +42,7 @@ class CmsPageController {
   public function context($request) {
     $slug = $request->getPathInfo();
     $content_row = $this->model()->getContent($slug, $request->get("preview"));
-    if(!$content_row) $this->context = false;
+    if(!$content_row) $this->context = null;
     else $this->context = $content_row;
   }
 
@@ -52,16 +52,19 @@ class CmsPageController {
    * @return Response
    **/
 
-  public function template() {
-
+  public function template($context = []) {
+    $template = $this->model()->getPageType($context);
+    if($template) return $this->renderer->render("pages/".$template.".html");
+    elseif($context) return $this->renderer->render("pages/__default.html");
+    return false;
   }
 
 
   public function cms($request) {
-    $slug = $request->getPathInfo();
-    $content_row = $this->model()->getContent($slug, $request->get("preview"));
-    if(!$content_row) return false;
-    return new Response($this->renderer->render('cms.html',$content_row));
+    $context = $this->context($request);
+    $template = $this->template($context);
+    if($template) return new Response($template);
+    return false;
   }
 
 
