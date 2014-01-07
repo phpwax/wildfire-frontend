@@ -42,8 +42,9 @@ class CmsPageController {
   public function context($request) {
     $slug = $request->getPathInfo();
     $content_row = $this->model()->getContent($slug, $request->get("preview"));
-    if(!$content_row) $this->context = null;
-    else $this->context = $content_row;
+    if(!$content_row) return false;
+    else return $content_row;
+    return false;
   }
 
   /**
