@@ -18,7 +18,7 @@ class Content extends Base {
           ->leftjoin("tu", "wildfire_content", "tc", "tu.destination_id = tc.id");
     $query->where("tu.origin_url = :url");
     if(!$preview) {$query->andwhere("tu.status = 1");}
-    $query->setParameter("url","/".$url, \PDO::PARAM_STR);
+    $query->setParameter("url", $url);
 
     return $this->execute(function() use($query){
       $this->setResult( $query->execute()->fetchAll() );
@@ -33,7 +33,7 @@ class Content extends Base {
           ->from("wildfire_content", "c")
           ->where("c.parent_id = ($sub)")
           ->andwhere("c.status=1")
-          ->setParameter("p", $parent_permalink, \PDO::PARAM_STR);
+          ->setParameter("p", $parent_permalink);
 
     return $this->execute(function() use($query){
       $this->setResult( $query->execute()->fetchAll() );
