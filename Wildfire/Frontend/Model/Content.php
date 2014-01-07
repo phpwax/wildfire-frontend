@@ -21,7 +21,7 @@ class Content extends Base {
     $query->setParameter("url","/".$url, \PDO::PARAM_STR);
 
     return $this->execute(function() use($query){
-      $this->setResult( $query->execute()->fetch() );
+      $this->setResult( $query->execute()->fetchAll() );
     });
   }
 
