@@ -68,7 +68,7 @@ class Content extends Base {
       $query->leftjoin("t1", "wildfire_content","t".$i, "t".$i.".id = t".($i-1).".parent_id");
     }
     $query->where("t1.id = :c")->setParameter("c",$row["id"]);
-    $tree = $query->execute()->fetchAll();
+    $tree = $query->execute()->fetchAssoc();
     foreach($tree as $node) if(strlen($node)>1) return $node;
     return false;
   }
