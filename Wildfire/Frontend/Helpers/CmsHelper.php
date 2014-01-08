@@ -6,7 +6,7 @@ class CmsHelper extends \Twig_Extension{
   public function getFilters() {
     return [
         new \Twig_SimpleFilter('render_media',        [$this, 'render_media']),
-        new \Twig_SimpleFilter('format_cms_content',  [$this, 'format_cms_content'])
+        new \Twig_SimpleFilter('format_cms_content',  [$this, 'format_cms_content'],['is_safe' => ['html']])
     ];
   }
 
