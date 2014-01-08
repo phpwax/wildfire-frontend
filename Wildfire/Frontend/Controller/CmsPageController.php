@@ -55,8 +55,9 @@ class CmsPageController {
 
   public function template($context = []) {
     $template = $this->model()->getPageType($context);
-    if($template) return $this->renderer->render("pages/".$template.".html");
-    elseif($context) return $this->renderer->render("pages/__default.html");
+    if($template && $this->renderer->getLoader()->exists("pages/".$template.".html")){ 
+      return $this->renderer->render("pages/".$template.".html", $context);
+    } elseif($context) return $this->renderer->render("pages/__default.html", $context);
     return false;
   }
 
