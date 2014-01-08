@@ -20,9 +20,13 @@ class Content extends Base {
     if(!$preview) {$query->andwhere("tu.status = 1");}
     $query->setParameter("url", $url);
 
-    return $this->execute(function() use($query){
+    $result = $this->execute(function() use($query){
       $this->setResult( $query->execute()->fetchAll() );
     });
+
+    // In this method we only want to return a single row.
+    if(count($result)>0) return $result[0];
+    return $result;
   }
 
   public function getContentChildren($parent_permalink) {
