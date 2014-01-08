@@ -56,7 +56,7 @@ class Content extends Base {
   public function getPageType($row, $depth=4) {
 
     // If it's set already on the specific row, don't go further up the tree
-    if(strlen($row->page_type)>0) return $row->page_type;
+    if(strlen($row["page_type"])>0) return $row["page_type"];
 
     $query = $this->db->createQueryBuilder();
     for($i=1; $i<=$depth; $i++) {
@@ -67,7 +67,7 @@ class Content extends Base {
     for($i=2; $i<=$depth; $i++) {
       $query->leftjoin("t1", "wildfire_content","t".$i, "t".$i.".id", "t".($i-1).".parent_id");
     }
-    $query->where("t1.id = :c")->setParameter("c",$row->id);
+    $query->where("t1.id = :c")->setParameter("c",$row["id"]);
     $tree = $query->execute()->fetchAll();
     foreach($tree as $node) if(strlen($node)>1) return $node;
     return false;
