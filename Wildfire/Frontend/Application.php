@@ -5,7 +5,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Wildfire\Frontend\Controller\CmsPageController;
 use Wildfire\Frontend\Helpers\CmsHelper;
-use Doctrine\DBAL\DriverManager;
+use Doctrine\DBAL\Driver\Connection;
 
 class Application implements HttpKernelInterface
 {
@@ -16,10 +16,10 @@ class Application implements HttpKernelInterface
 
     public $app;
 
-    public function __construct(DriverManager $db, $renderer = false) {
+    public function __construct(Connection $db, $renderer = false) {
         $this->db = $db;
-        $this->controllers = new \SplStack();
         $this->renderer = $renderer;
+        $this->controllers = new \SplStack();
     }
 
 
