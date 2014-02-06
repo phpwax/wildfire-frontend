@@ -22,4 +22,5 @@ class CmsHelper extends \Twig_Extension{
   public function getName(){
     return 'cms_helper_extension';
   }
+
 }

@@ -67,5 +67,4 @@ class AssetApplication implements HttpKernelInterface  {
   }
 
 
-
 }
