@@ -1,7 +1,7 @@
 {
     "name": "phpwax/wildfire-frontend",
     "description": "Composable frontend for Wildfire CMS site",
-    "license": "MIT",
+    "license": "Proprietary",
     "authors": [
         {
             "name": "Ross Riley",
