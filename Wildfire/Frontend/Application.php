@@ -16,7 +16,7 @@ class Application implements HttpKernelInterface
 
     public $app;
 
-    public function __construct(Connection $db, $renderer = false) {
+    public function __construct(Connection $db, $renderer = null) {
         $this->db = $db;
         $this->renderer = $renderer;
         $this->controllers = new \SplStack();
@@ -38,7 +38,7 @@ class Application implements HttpKernelInterface
     protected function configure() {
 
         // Setup twig as default renderering system
-        if(!isset($this->renderer)) {
+        if(null === $this->renderer) {
             $loader = new \Twig_Loader_Filesystem(__DIR__ . '/Templates');
             $this->renderer = new \Twig_Environment($loader);
             $this->renderer->addExtension(new CmsHelper);
